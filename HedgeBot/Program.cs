@@ -22,7 +22,7 @@ class Program
         // BƯỚC 1: LẤY DỮ LIỆU TỪ API (Chỉ cần chạy 1 lần đầu)
         if (!File.Exists(fileName))
         {
-            DateTime SixMonthAgo = DateTime.UtcNow.AddMonths(-6);
+            DateTime SixMonthAgo = DateTime.UtcNow.AddMonths(-24);
             await DataTool.DownloadHistoryToCsv(symbol, interval, SixMonthAgo, fileName);
         }
 
