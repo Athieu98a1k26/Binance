@@ -1,4 +1,5 @@
 ﻿using HedgeBot;
+using HedgeBot.BackTest;
 using HedgeBot.Common;
 using Newtonsoft.Json.Linq;
 using System.Net;
@@ -14,36 +15,56 @@ class Program
 
         string symbol = "ETHUSDT";
 
-        decimal currentPrice = 0;
-        // 1. Chạy một Task riêng để cập nhật giá liên tục từ Stream
-        _ = Task.Run(async () =>
+
+        string interval = "3m";
+        string fileName = "history_6_months.csv";
+
+        // BƯỚC 1: LẤY DỮ LIỆU TỪ API (Chỉ cần chạy 1 lần đầu)
+        if (!File.Exists(fileName))
         {
-            await foreach (decimal price in ListenTradesAsync(symbol))
-            {
-                currentPrice = price;
-            }
-        });
-
-        // 2. Vòng lặp Logic bây giờ sẽ chạy được vì Stream đã ở luồng khác
-        while (true)
-        {
-            if (currentPrice == 0)
-            {
-                await Task.Delay(1000); // Đợi Stream kết nối thành công
-                continue;
-            }
-
-            try
-            {
-                await BotLogic.Run(currentPrice, symbol);
-            }
-            catch (Exception ex)
-            {
-                Logger.Write($"❌ ERROR: {ex.Message}");
-            }
-
-            await Task.Delay(3000); // Chạy ổn định mỗi 3 giây
+            DateTime SixMonthAgo = DateTime.UtcNow.AddMonths(-6);
+            await DataTool.DownloadHistoryToCsv(symbol, interval, SixMonthAgo, fileName);
         }
+
+        // BƯỚC 2: LẤY DỮ LIỆU TỪ CSV RA ĐỂ TEST
+        var historyData = DataTool.LoadFromCsv(fileName);
+
+        // BƯỚC 3: CHẠY BACKTEST
+        BacktestEngine.RunTest(historyData);
+
+        Console.WriteLine("Nhấn phím bất kỳ để thoát...");
+        Console.ReadKey();
+
+        //decimal currentPrice = 0;
+        //// 1. Chạy một Task riêng để cập nhật giá liên tục từ Stream
+        //_ = Task.Run(async () =>
+        //{
+        //    await foreach (decimal price in ListenTradesAsync(symbol))
+        //    {
+        //        currentPrice = price;
+        //    }
+        //});
+
+        //// 2. Vòng lặp Logic bây giờ sẽ chạy được vì Stream đã ở luồng khác
+        //while (true)
+        //{
+        //    if (currentPrice == 0)
+        //    {
+        //        await Task.Delay(1000); // Đợi Stream kết nối thành công
+        //        continue;
+        //    }
+
+        //    try
+        //    {
+        //        await BotLogic.Run(currentPrice, symbol);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.Write($"❌ ERROR: {ex.Message}");
+        //    }
+
+        //    await Task.Delay(3000); // Chạy ổn định mỗi 3 giây
+        //}
 
     }
 

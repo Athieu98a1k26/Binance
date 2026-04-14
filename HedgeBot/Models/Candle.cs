@@ -8,11 +8,14 @@ namespace HedgeBot.Models
 {
     public class Candle
     {
-        public decimal Open { get; set; }   // <--- BẮT BUỘC PHẢI CÓ
+        public DateTime OpenTime { get; set; }
+        public decimal Open { get; set; }
         public decimal High { get; set; }
         public decimal Low { get; set; }
         public decimal Close { get; set; }
         public decimal Volume { get; set; }
-        public DateTime Time { get; set; }  // Nên có để quản lý nến theo thời gian
+
+        public override string ToString() =>
+            $"{new DateTimeOffset(OpenTime).ToUnixTimeMilliseconds()},{Open},{High},{Low},{Close},{Volume}";
     }
 }
