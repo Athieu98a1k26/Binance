@@ -12,7 +12,7 @@ class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.UTF8;
 
-        string symbol = "BTCUSDT";
+        string symbol = "ETHUSDT";
 
         decimal currentPrice = 0;
         // 1. Chạy một Task riêng để cập nhật giá liên tục từ Stream
