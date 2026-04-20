@@ -12,7 +12,7 @@ class Program
     {
         var dataService = new DataService();
         // 1. Lấy toàn bộ nến từ Binance (ví dụ 10,000 nến)
-        var allCandles = await dataService.GetCandlesAsync("ETHUSDT", totalCandles: 15000);
+        var allCandles = await dataService.GetCandlesAsync("ETHUSDT", totalCandles: 10000);
 
         // 2. Chia dữ liệu
         int testSize = 2000; // Giữ lại 1000 nến cuối cùng để Test

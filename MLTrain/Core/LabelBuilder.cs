@@ -11,59 +11,47 @@ namespace MLTrain.Core
     {
         public static decimal Build(List<Candle> candles, int i)
         {
-            const int LOOKAHEAD = 10;
-            const decimal TP_PERCENT = 0.01m; // 1%
-            const decimal SL_PERCENT = 0.01m; // 1%
-
-            // Kiểm tra biên
-            if (i < 0 || i + LOOKAHEAD >= candles.Count)
-                return 0;
+            int lookahead = 10; // Kiểm tra 10 nến tiếp theo
+            if (i + lookahead >= candles.Count) return 0;
 
             var entry = candles[i].Close;
 
-            // --- Mức giá cụ thể ---
-            decimal longTP = entry * (1 + TP_PERCENT);
-            decimal longSL = entry * (1 - SL_PERCENT);
-            decimal shortTP = entry * (1 - TP_PERCENT);
-            decimal shortSL = entry * (1 + SL_PERCENT);
+            // Cài đặt Target Profit (TP) và Stop Loss (SL)
+            // Với Futures, bạn nên tính cả phí (khoảng 0.04% - 0.1% tùy mức VIP)
+            decimal tpPercent = 0.01m; // 1%
+            decimal slPercent = 0.01m; // 1%
 
-            // Duyệt tương lai
-            for (int j = i + 1; j <= i + LOOKAHEAD; j++)
+            decimal longTP = entry * (1 + tpPercent);
+            decimal longSL = entry * (1 - slPercent);
+
+            decimal shortTP = entry * (1 - tpPercent);
+            decimal shortSL = entry * (1 + slPercent);
+
+            // Duyệt qua từng nến tương lai để xem cái gì xảy ra trước
+            for (int j = i + 1; j <= i + lookahead; j++)
             {
-                var c = candles[j];
+                var high = candles[j].High;
+                var low = candles[j].Low;
 
-                // === QUAN TRỌNG: XÁC ĐỊNH CÁI GÌ ĐẾN TRƯỚC TRONG CÂY NẾN ===
-                // Dựa vào bóng nến để đoán xu hướng giá chạy trong phiên
-                bool isBullishCandle = c.Close >= c.Open;
+                // --- KIỂM TRA LỆNH LONG ---
+                bool longHitTP = high >= longTP;
+                bool longHitSL = low <= longSL;
 
-                // TH1: NẾN TĂNG (Giá chạy từ Open -> Low -> High -> Close)
-                if (isBullishCandle)
-                {
-                    // Giá đi xuống trước (tạo đáy)
-                    if (c.Low <= longSL) return 0; // LONG THUA (Chạm SL trước)
-                    if (c.Low <= shortTP) return 2; // SHORT THẮNG (Chạm TP trước)
+                // --- KIỂM TRA LỆNH SHORT ---
+                bool shortHitTP = low <= shortTP;
+                bool shortHitSL = high >= shortSL;
 
-                    // Sau đó giá mới đi lên
-                    if (c.High >= longTP) return 1; // LONG THẮNG
-                    if (c.High >= shortSL) return 0; // SHORT THUA
-                }
-                // TH2: NẾN GIẢM (Giá chạy từ Open -> High -> Low -> Close)
-                else
-                {
-                    // Giá đi lên trước (tạo đỉnh)
-                    if (c.High >= shortSL) return 0; // SHORT THUA (Chạm SL trước)
-                    if (c.High >= longTP) return 1;   // LONG THẮNG (Chạm TP trước)
+                // Ưu tiên: Nếu nến biến động mạnh chạm cả TP và SL thì coi như rủi ro (bỏ qua)
+                if (longHitTP && longHitSL) return 0;
 
-                    // Sau đó giá mới đi xuống
-                    if (c.Low <= longSL) return 0; // LONG THUA
-                    if (c.Low <= shortTP) return 2; // SHORT THẮNG
-                }
+                if (longHitTP) return 1; // LONG thắng
+                if (shortHitTP) return 2; // SHORT thắng
 
-                // Trường hợp đặc biệt: Nến Doji không râu (ít xảy ra)
-                // Nếu High/Low chạm cùng lúc hoặc khó xác định -> Bỏ qua
+                // Nếu chạm SL của cả 2 phe trước khi chạm TP thì coi như thua
+                if (longHitSL && shortHitSL) return 0;
             }
 
-            return 0; // Không chạm mục tiêu nào trong lookahead
+            return 0; // Không chạm mục tiêu nào trong 10 nến
         }
     }
 }
