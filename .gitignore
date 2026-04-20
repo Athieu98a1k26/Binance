@@ -3,3 +3,7 @@
 ################################################################################
 
 *.vsidx
+/.vs
+/HedgeBot/bin/Debug/net8.0
+/HedgeBot/obj/Debug/net8.0
+/HedgeBot/obj
