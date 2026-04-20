@@ -1,0 +1,185 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\admin\\Downloads\\MLTrain\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|c:\\users\\admin\\downloads\\mltrain\\mltrain\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|solutionrelative:mltrain\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|c:\\users\\admin\\downloads\\mltrain\\mltrain\\core\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|solutionrelative:mltrain\\core\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|c:\\users\\admin\\downloads\\mltrain\\mltrain\\core\\featurebuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|solutionrelative:mltrain\\core\\featurebuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|c:\\users\\admin\\downloads\\mltrain\\mltrain\\models\\traderesult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|solutionrelative:mltrain\\models\\traderesult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|c:\\users\\admin\\downloads\\mltrain\\mltrain\\core\\trainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|solutionrelative:mltrain\\core\\trainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|c:\\users\\admin\\downloads\\mltrain\\mltrain\\core\\signalengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|solutionrelative:mltrain\\core\\signalengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|c:\\users\\admin\\downloads\\mltrain\\mltrain\\core\\regimedetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|solutionrelative:mltrain\\core\\regimedetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|c:\\users\\admin\\downloads\\mltrain\\mltrain\\core\\mlservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|solutionrelative:mltrain\\core\\mlservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|c:\\users\\admin\\downloads\\mltrain\\mltrain\\core\\labelbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C886A1D-7BEA-4116-B920-78FE2B469790}|MLTrain\\MLTrain.csproj|solutionrelative:mltrain\\core\\labelbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Logger.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Core\\Logger.cs",
+              "RelativeDocumentMoniker": "MLTrain\\Core\\Logger.cs",
+              "ToolTip": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Core\\Logger.cs",
+              "RelativeToolTip": "MLTrain\\Core\\Logger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T19:20:48.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TradeResult.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Models\\TradeResult.cs",
+              "RelativeDocumentMoniker": "MLTrain\\Models\\TradeResult.cs",
+              "ToolTip": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Models\\TradeResult.cs",
+              "RelativeToolTip": "MLTrain\\Models\\TradeResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T19:08:05.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RegimeDetector.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Core\\RegimeDetector.cs",
+              "RelativeDocumentMoniker": "MLTrain\\Core\\RegimeDetector.cs",
+              "ToolTip": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Core\\RegimeDetector.cs",
+              "RelativeToolTip": "MLTrain\\Core\\RegimeDetector.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T19:07:09.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MLService.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Core\\MLService.cs",
+              "RelativeDocumentMoniker": "MLTrain\\Core\\MLService.cs",
+              "ToolTip": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Core\\MLService.cs",
+              "RelativeToolTip": "MLTrain\\Core\\MLService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T19:07:07.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LabelBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Core\\LabelBuilder.cs",
+              "RelativeDocumentMoniker": "MLTrain\\Core\\LabelBuilder.cs",
+              "ToolTip": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Core\\LabelBuilder.cs",
+              "RelativeToolTip": "MLTrain\\Core\\LabelBuilder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T19:07:04.538Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FeatureBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Core\\FeatureBuilder.cs",
+              "RelativeDocumentMoniker": "MLTrain\\Core\\FeatureBuilder.cs",
+              "ToolTip": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Core\\FeatureBuilder.cs",
+              "RelativeToolTip": "MLTrain\\Core\\FeatureBuilder.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwA4AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T19:07:00.949Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SignalEngine.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Core\\SignalEngine.cs",
+              "RelativeDocumentMoniker": "MLTrain\\Core\\SignalEngine.cs",
+              "ToolTip": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Core\\SignalEngine.cs",
+              "RelativeToolTip": "MLTrain\\Core\\SignalEngine.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAkwDgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T18:14:48.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Program.cs",
+              "RelativeDocumentMoniker": "MLTrain\\Program.cs",
+              "ToolTip": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Program.cs",
+              "RelativeToolTip": "MLTrain\\Program.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFAAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T18:03:39.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Trainer.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Core\\Trainer.cs",
+              "RelativeDocumentMoniker": "MLTrain\\Core\\Trainer.cs",
+              "ToolTip": "C:\\Users\\admin\\Downloads\\MLTrain\\MLTrain\\Core\\Trainer.cs",
+              "RelativeToolTip": "MLTrain\\Core\\Trainer.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAswDcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T17:43:59.059Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
