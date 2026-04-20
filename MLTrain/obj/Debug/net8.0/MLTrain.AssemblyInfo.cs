@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MLTrain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e21238952cde6ab890c3b58ec7ea9d9fc670cc0a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d06526c3f3efcedfb59521457fc28af0edad7987")]
 [assembly: System.Reflection.AssemblyProductAttribute("MLTrain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MLTrain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

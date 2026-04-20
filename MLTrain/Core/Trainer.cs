@@ -54,44 +54,5 @@ namespace MLTrain.Core
             Trainer.Train("model.zip", dataset);
             Console.WriteLine("✅ TRAIN DONE");
         }
-
-        public static async Task TrainFromBinance()
-        {
-            Console.WriteLine("=== LOAD DATA FROM BINANCE ===");
-
-            var dataService = new DataService();
-
-            var candles = await dataService.GetCandlesAsync("BTCUSDT");
-
-            Console.WriteLine($"Candles: {candles.Count}");
-
-            var dataset = new List<ModelInput>();
-
-            for (int i = 100; i < candles.Count - 20; i++)
-            {
-                var f = FeatureBuilder.Build(candles, i);
-                if (f == null) continue;
-
-                // Gọi hàm Build của bạn (trả về decimal: 0, 1, hoặc 2)
-                decimal labelValue = LabelBuilder.Build(candles, i);
-
-                // Gán vào ModelInput dưới dạng chuỗi để ML.NET hiểu đây là "Nhãn"
-                f.Label = labelValue.ToString();
-
-                dataset.Add(f);
-            }
-
-
-            Console.WriteLine($"Total: {dataset.Count}");
-            Console.WriteLine($"Long (1): {dataset.Count(x => x.Label == "1")}");
-            Console.WriteLine($"Short (2): {dataset.Count(x => x.Label == "2")}");
-            Console.WriteLine($"No Trade (0): {dataset.Count(x => x.Label == "0")}");
-
-            Console.WriteLine($"Dataset: {dataset.Count}");
-
-            Trainer.Train("model.zip", dataset);
-
-            Console.WriteLine("✅ TRAIN DONE");
-        }
     }
 }
