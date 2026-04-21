@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Binance.Net.Enums;
 using MLTrain.Core;
+using MLTrain.Logs;
 using MLTrain.Models;
 using MLTrain.Services;
 using Newtonsoft.Json.Linq;
@@ -31,12 +32,11 @@ namespace MLTrain.Live
         private readonly static int maxGetCandle1d = 1000;
 
         public static async Task RunLive(
-            string symbol,
-            List<Candle> candles5m,
-            List<Candle> candles1h,
-            List<Candle> candles1d)
+    string symbol,
+    List<Candle> candles5m,
+    List<Candle> candles1h,
+    List<Candle> candles1d)
         {
-
             _symbol = symbol;
 
             var mlService = new MLService();
@@ -46,7 +46,6 @@ namespace MLTrain.Live
             decimal minTP = 0.008m;
             decimal fee = 0.001m;
 
-            // Trạng thái lệnh hiện tại
             bool inTrade = false;
             bool isLong = false;
             decimal entryPrice = 0;
@@ -55,14 +54,12 @@ namespace MLTrain.Live
             string side = "";
 
             Trader.InitCurrentCandles(candles5m, candles1h, candles1d);
-            // Khởi động sync background
             StartSyncTask(_symbol, candles5m, candles1h, candles1d);
 
             await foreach (var (price, quantity) in Trader.ListenTradesAsync(_symbol))
             {
                 UpdateAllCandles(candles5m, candles1h, candles1d, price, quantity);
 
-                // ── Kiểm tra TP/SL theo giá real-time (không cần đợi nến đóng) ──
                 if (inTrade)
                 {
                     bool hitSL = isLong ? price <= slPrice : price >= slPrice;
@@ -75,7 +72,17 @@ namespace MLTrain.Live
                                           $"Entry: {entryPrice:F2} | SL: {slPrice:F2} | Giá: {price:F2}");
                         Console.ResetColor();
 
-                        //await PlaceOrderAsync(SYMBOL, isLong ? Side.Sell : Side.Buy, 0.01m); // đóng lệnh
+                        // Gửi thông báo Telegram khi SL bị chạm
+                        string slMessage = $"""
+                ❌ **SL HIT** ❌
+                {side}
+                Entry: {entryPrice:F2}
+                SL: {slPrice:F2}
+                Giá đóng: {price:F2}
+                Thời gian: {DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} UTC
+                """;
+                        await TelegramBot.SendTelegramMessage(slMessage);
+
                         inTrade = false;
                         continue;
                     }
@@ -87,17 +94,25 @@ namespace MLTrain.Live
                                           $"Entry: {entryPrice:F2} | TP: {tpPrice:F2} | Giá: {price:F2}");
                         Console.ResetColor();
 
-                        //await PlaceOrderAsync(SYMBOL, isLong ? Side.Sell : Side.Buy, 0.01m); // đóng lệnh
+                        // Gửi thông báo Telegram khi TP được chạm
+                        string tpMessage = $"""
+                ✅ **TP HIT** ✅
+                {side}
+                Entry: {entryPrice:F2}
+                TP: {tpPrice:F2}
+                Giá đóng: {price:F2}
+                Thời gian: {DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} UTC
+                """;
+                        await TelegramBot.SendTelegramMessage(tpMessage);
+
                         inTrade = false;
                         continue;
                     }
                 }
 
-                // ── Chỉ phân tích khi nến 5M vừa đóng ──────────────────────────
                 if (!Trader._isNewCandle5m) continue;
-                if (inTrade) continue; // đang có lệnh → không mở thêm
+                if (inTrade) continue;
 
-                // Dùng nến đã đóng [^2], không dùng nến đang hình thành [^1]
                 int i = candles5m.Count - 2;
                 if (i < 50) continue;
 
@@ -107,7 +122,6 @@ namespace MLTrain.Live
                 var (signal, confidence) = mlService.PredictFull(f);
                 if (confidence <= 0.75f || (signal != "1" && signal != "2")) continue;
 
-                // ── Tính TP/SL động theo ATR (giống BacktestDetailed) ───────────
                 entryPrice = candles5m[i].Close;
                 isLong = signal == "1";
                 side = isLong ? "LONG 🚀" : "SHORT 🔻";
@@ -123,14 +137,27 @@ namespace MLTrain.Live
                     ? entryPrice * (1m + tpPct - fee)
                     : entryPrice * (1m - tpPct + fee);
 
-                // ── Đặt lệnh ────────────────────────────────────────────────────
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"[{DateTime.UtcNow:HH:mm:ss}] {side} | MỞ LỆNH | " +
                                   $"Entry: {entryPrice:F2} | TP: {tpPrice:F2} | SL: {slPrice:F2} | " +
                                   $"Conf: {confidence:P0} | Trend1D: {f.Trend1D:F3} | Trend1H: {f.Trend1H:F3}");
                 Console.ResetColor();
 
-                //await PlaceOrderAsync(SYMBOL, isLong ? Side.Buy : Side.Sell, 0.01m);
+                // Gửi thông báo Telegram khi mở lệnh
+                string openMessage = $"""
+        🚀 **MỞ LỆNH {side}** 🚀
+        Symbol: {symbol}
+        Entry: {entryPrice:F2}
+        TP: {tpPrice:F2}
+        SL: {slPrice:F2}
+        Confidence: {confidence:P0}
+        Trend1D: {f.Trend1D:F3}
+        Trend1H: {f.Trend1H:F3}
+        ATR: {atrRaw:F4}
+        Thời gian: {DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} UTC
+        """;
+                await TelegramBot.SendTelegramMessage(openMessage);
+
                 inTrade = true;
             }
         }
@@ -251,7 +278,6 @@ namespace MLTrain.Live
                     SyncCandles(candles1d, fresh1d, maxKeep: maxCandleKeep1d);
                 }
 
-                Console.WriteLine($"[{DateTime.UtcNow:HH:mm:ss}] 🔄 Sync hoàn tất");
             }
             catch (Exception ex)
             {

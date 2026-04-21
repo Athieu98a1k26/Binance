@@ -3,11 +3,11 @@ using Telegram.Bot.Types;
 
 namespace MLTrain.Logs
 {
-    public static class Telegram
+    public static class TelegramBot
     {
         // Lưu ý: Không nên để Token trực tiếp trong code nếu dự án thực tế
         private readonly static string botToken = "8128106058:AAHMlsoXK6cooA6dYyE1kQ7kshujnStbgqo";
-        private readonly static long chatId = 8128106058;
+        private readonly static long chatId = 1652095389;
 
         // Khởi tạo client dùng chung cho class
         private readonly static TelegramBotClient botClient = new TelegramBotClient(botToken);

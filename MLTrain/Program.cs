@@ -5,6 +5,7 @@ using Binance.Net.Enums;
 using MLTrain.BackTests;
 using MLTrain.Core;
 using MLTrain.Live;
+using MLTrain.Logs;
 using MLTrain.Models;
 using MLTrain.Services;
 using Newtonsoft.Json.Linq;
@@ -19,64 +20,64 @@ class Program
         // =====================================================================
         // BƯỚC 1: Tải dữ liệu 3 khung thời gian
         // =====================================================================
-        Console.WriteLine("📥 Đang tải dữ liệu 3 timeframe...");
+        //Console.WriteLine("📥 Đang tải dữ liệu 3 timeframe...");
 
-        List<Candle> candles5m = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.FiveMinutes, totalCandles: 2000000);
-        List<Candle> candles1h = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.OneHour, totalCandles: 1000000);
-        List<Candle> candles1d = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.OneDay, totalCandles: 500000);
+        //List<Candle> candles5m = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.FiveMinutes, totalCandles: 2000000);
+        //List<Candle> candles1h = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.OneHour, totalCandles: 1000000);
+        //List<Candle> candles1d = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.OneDay, totalCandles: 500000);
 
-        Console.WriteLine($"✅ 5M: {candles5m.Count} nến | 1H: {candles1h.Count} nến | 1D: {candles1d.Count} nến");
+        //Console.WriteLine($"✅ 5M: {candles5m.Count} nến | 1H: {candles1h.Count} nến | 1D: {candles1d.Count} nến");
 
-        // =====================================================================
-        // BƯỚC 2: Chia tập Train / Test theo nến 5M
-        //         1H và 1D được slice tương ứng theo thời gian
-        // =====================================================================
-        int testSize = 50000;
-        int trainSize = candles5m.Count - testSize;
+        //// =====================================================================
+        //// BƯỚC 2: Chia tập Train / Test theo nến 5M
+        ////         1H và 1D được slice tương ứng theo thời gian
+        //// =====================================================================
+        //int testSize = 50000;
+        //int trainSize = candles5m.Count - testSize;
 
-        // --- Nến 5M ---
-        var train5m = candles5m.GetRange(0, trainSize);
-        // test5m dùng toàn bộ allCandles để BacktestDetailed có đủ context quá khứ
-        // (tương tự code gốc: truyền allCandles + startIndex)
+        //// --- Nến 5M ---
+        //var train5m = candles5m.GetRange(0, trainSize);
+        //// test5m dùng toàn bộ allCandles để BacktestDetailed có đủ context quá khứ
+        //// (tương tự code gốc: truyền allCandles + startIndex)
 
-        // --- Nến 1H: lấy toàn bộ (BacktestDetailed tự tìm đúng timestamp) ---
-        // --- Nến 1D: tương tự ---
-        // Không cần slice 1H/1D vì chúng ta dùng FindLastIndex theo Time
+        //// --- Nến 1H: lấy toàn bộ (BacktestDetailed tự tìm đúng timestamp) ---
+        //// --- Nến 1D: tương tự ---
+        //// Không cần slice 1H/1D vì chúng ta dùng FindLastIndex theo Time
 
-        DateTime trainCutoff = train5m.Last().Time;
+        //DateTime trainCutoff = train5m.Last().Time;
 
-        // Nến 1H dùng cho train: chỉ lấy những nến trước trainCutoff
-        var train1h = candles1h.Where(c => c.Time <= trainCutoff).ToList();
-        var train1d = candles1d.Where(c => c.Time <= trainCutoff).ToList();
+        //// Nến 1H dùng cho train: chỉ lấy những nến trước trainCutoff
+        //var train1h = candles1h.Where(c => c.Time <= trainCutoff).ToList();
+        //var train1d = candles1d.Where(c => c.Time <= trainCutoff).ToList();
 
-        Console.WriteLine($"\n📊 Phân chia dữ liệu:");
-        Console.WriteLine($"   Train 5M : {train5m.Count} nến  ({train5m[0].Time:dd/MM/yyyy} → {train5m.Last().Time:dd/MM/yyyy})");
-        Console.WriteLine($"   Test  5M : {testSize} nến cuối ({candles5m[trainSize].Time:dd/MM/yyyy} → {candles5m.Last().Time:dd/MM/yyyy})");
-        Console.WriteLine($"   Train 1H : {train1h.Count} nến");
-        Console.WriteLine($"   Train 1D : {train1d.Count} nến");
+        //Console.WriteLine($"\n📊 Phân chia dữ liệu:");
+        //Console.WriteLine($"   Train 5M : {train5m.Count} nến  ({train5m[0].Time:dd/MM/yyyy} → {train5m.Last().Time:dd/MM/yyyy})");
+        //Console.WriteLine($"   Test  5M : {testSize} nến cuối ({candles5m[trainSize].Time:dd/MM/yyyy} → {candles5m.Last().Time:dd/MM/yyyy})");
+        //Console.WriteLine($"   Train 1H : {train1h.Count} nến");
+        //Console.WriteLine($"   Train 1D : {train1d.Count} nến");
 
         // =====================================================================
         // BƯỚC 3: Train
         // =====================================================================
-        Console.WriteLine("\n🧠 Bắt đầu huấn luyện...");
-        await Trainer.TrainWithData(train5m, train1h, train1d);
+        //Console.WriteLine("\n🧠 Bắt đầu huấn luyện...");
+        //await Trainer.TrainWithData(train5m, train1h, train1d);
 
-        // =====================================================================
-        // BƯỚC 4: Backtest trên tập Test (AI chưa từng thấy)
-        // =====================================================================
-        Console.WriteLine("\n=== BẮT ĐẦU KIỂM TRA TRÊN DỮ LIỆU MỚI ===");
-        BackTestFuture.BacktestDetailed(candles5m, candles1h, candles1d, startIndex: trainSize);
-
-        // ── Bước 3: Chạy live ──
-        //Console.WriteLine("\n🚀 Bắt đầu live trading...");
-        //Console.WriteLine("📥 Đang tải dữ liệu 3 timeframe...");
-
-        //var candles5m = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.FiveMinutes, totalCandles: 200000);
-        //var candles1h = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.OneHour, totalCandles: 100000);
-        //var candles1d = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.OneDay, totalCandles: 50000);
-        // ── Khởi tạo trạng thái nến hiện tại từ data đã load ──
+        //// =====================================================================
+        //// BƯỚC 4: Backtest trên tập Test (AI chưa từng thấy)
+        //// =====================================================================
+        //Console.WriteLine("\n=== BẮT ĐẦU KIỂM TRA TRÊN DỮ LIỆU MỚI ===");
+        //BackTestFuture.BacktestDetailed(candles5m, candles1h, candles1d, startIndex: trainSize);
         
-        //await Trader.RunLive(SYMBOL,candles5m, candles1h, candles1d);
+        // ── Bước 3: Chạy live ──
+        Console.WriteLine("\n🚀 Bắt đầu live trading...");
+        Console.WriteLine("📥 Đang tải dữ liệu 3 timeframe...");
+
+        var candles5m = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.FiveMinutes, totalCandles: 200000);
+        var candles1h = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.OneHour, totalCandles: 100000);
+        var candles1d = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.OneDay, totalCandles: 50000);
+
+        
+        await Trader.RunLive(SYMBOL, candles5m, candles1h, candles1d);
 
         Console.ReadLine();
     }

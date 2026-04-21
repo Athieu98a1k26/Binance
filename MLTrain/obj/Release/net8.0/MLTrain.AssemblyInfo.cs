@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MLTrain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b1026c3ee1c56e29247a76249d0d6a9d55105356")]
 [assembly: System.Reflection.AssemblyProductAttribute("MLTrain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MLTrain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
