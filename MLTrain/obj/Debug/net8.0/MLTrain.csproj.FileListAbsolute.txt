@@ -181,3 +181,4 @@ C:\ProjectMe\Binance\MLTrain\obj\Debug\net8.0\refint\MLTrain.dll
 C:\ProjectMe\Binance\MLTrain\obj\Debug\net8.0\MLTrain.pdb
 C:\ProjectMe\Binance\MLTrain\obj\Debug\net8.0\MLTrain.genruntimeconfig.cache
 C:\ProjectMe\Binance\MLTrain\obj\Debug\net8.0\ref\MLTrain.dll
+C:\ProjectMe\Binance\MLTrain\bin\Debug\net8.0\Telegram.Bot.dll

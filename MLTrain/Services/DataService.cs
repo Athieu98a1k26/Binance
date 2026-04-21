@@ -64,7 +64,7 @@ namespace MLTrain.Services
                 Console.WriteLine($"[Binance] Đã lấy {allCandles.Count}/{totalCandles} nến...");
 
                 // Tránh rate limit
-                await Task.Delay(200);
+                await Task.Delay(500);
             }
 
             Console.WriteLine($"[Binance] Hoàn thành! Tổng {allCandles.Count} nến từ {allCandles.First().Time:dd/MM/yyyy} đến {allCandles.Last().Time:dd/MM/yyyy}");

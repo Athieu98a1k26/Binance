@@ -62,6 +62,10 @@
             "Microsoft.ML.LightGbm": {
               "target": "Package",
               "version": "[5.0.0, )"
+            },
+            "Telegram.Bot": {
+              "target": "Package",
+              "version": "[22.9.6.1, )"
             }
           },
           "imports": [

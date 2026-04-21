@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jUR2Ts46ElM=",
+  "dgSpecHash": "6Fhm9VadjSA=",
   "success": true,
   "projectFilePath": "C:\\ProjectMe\\Binance\\MLTrain\\MLTrain.csproj",
   "expectedPackageFiles": [
@@ -40,7 +40,8 @@
     "C:\\Users\\admin\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.1.2\\system.runtime.compilerservices.unsafe.6.1.2.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\system.text.encodings.web\\10.0.1\\system.text.encodings.web.10.0.1.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\system.text.json\\10.0.1\\system.text.json.10.0.1.nupkg.sha512",
-    "C:\\Users\\admin\\.nuget\\packages\\system.threading.channels\\10.0.1\\system.threading.channels.10.0.1.nupkg.sha512"
+    "C:\\Users\\admin\\.nuget\\packages\\system.threading.channels\\10.0.1\\system.threading.channels.10.0.1.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\telegram.bot\\22.9.6.1\\telegram.bot.22.9.6.1.nupkg.sha512"
   ],
   "logs": []
 }

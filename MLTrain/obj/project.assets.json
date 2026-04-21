@@ -874,6 +874,23 @@
         "build": {
           "buildTransitive/net8.0/_._": {}
         }
+      },
+      "Telegram.Bot/22.9.6.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Options.ConfigurationExtensions": "8.0.0",
+          "System.Text.Json": "8.0.5"
+        },
+        "compile": {
+          "lib/net6.0/Telegram.Bot.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Telegram.Bot.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
       }
     }
   },
@@ -2033,13 +2050,33 @@
         "system.threading.channels.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Telegram.Bot/22.9.6.1": {
+      "sha512": "I0eaMaETcWIhMn4uu4RGd9e6PLJOjaOG3QAcKPsTcS80H3TF6gqj3UF9NKu4ZY90ul6Y6NiWToHkg/PsvxkotA==",
+      "type": "package",
+      "path": "telegram.bot/22.9.6.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net6.0/Telegram.Bot.dll",
+        "lib/net6.0/Telegram.Bot.pdb",
+        "lib/net6.0/Telegram.Bot.xml",
+        "lib/netstandard2.0/Telegram.Bot.dll",
+        "lib/netstandard2.0/Telegram.Bot.pdb",
+        "lib/netstandard2.0/Telegram.Bot.xml",
+        "package-icon.png",
+        "telegram.bot.22.9.6.1.nupkg.sha512",
+        "telegram.bot.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "Binance.Net >= 12.11.3",
       "Microsoft.ML.FastTree >= 5.0.0",
-      "Microsoft.ML.LightGbm >= 5.0.0"
+      "Microsoft.ML.LightGbm >= 5.0.0",
+      "Telegram.Bot >= 22.9.6.1"
     ]
   },
   "packageFolders": {
@@ -2104,6 +2141,10 @@
           "Microsoft.ML.LightGbm": {
             "target": "Package",
             "version": "[5.0.0, )"
+          },
+          "Telegram.Bot": {
+            "target": "Package",
+            "version": "[22.9.6.1, )"
           }
         },
         "imports": [

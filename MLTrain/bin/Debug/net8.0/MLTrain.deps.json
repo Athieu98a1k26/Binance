@@ -10,7 +10,8 @@
         "dependencies": {
           "Binance.Net": "12.11.3",
           "Microsoft.ML.FastTree": "5.0.0",
-          "Microsoft.ML.LightGbm": "5.0.0"
+          "Microsoft.ML.LightGbm": "5.0.0",
+          "Telegram.Bot": "22.9.6.1"
         },
         "runtime": {
           "MLTrain.dll": {}
@@ -617,6 +618,18 @@
             "fileVersion": "10.0.125.57005"
           }
         }
+      },
+      "Telegram.Bot/22.9.6.1": {
+        "dependencies": {
+          "Microsoft.Extensions.Options.ConfigurationExtensions": "10.0.1",
+          "System.Text.Json": "10.0.1"
+        },
+        "runtime": {
+          "lib/net6.0/Telegram.Bot.dll": {
+            "assemblyVersion": "22.9.6.1",
+            "fileVersion": "22.9.6.1"
+          }
+        }
       }
     }
   },
@@ -884,6 +897,13 @@
       "sha512": "sha512-YRqU6Y2Cl6C+HrG5h1ftgKZ5VDTSA7j1wMKs5RtlauPeQ2EZ639Jt5aOFHdX3naP01hDDWFOWPApmNDVKwOpmg==",
       "path": "system.threading.channels/10.0.1",
       "hashPath": "system.threading.channels.10.0.1.nupkg.sha512"
+    },
+    "Telegram.Bot/22.9.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-I0eaMaETcWIhMn4uu4RGd9e6PLJOjaOG3QAcKPsTcS80H3TF6gqj3UF9NKu4ZY90ul6Y6NiWToHkg/PsvxkotA==",
+      "path": "telegram.bot/22.9.6.1",
+      "hashPath": "telegram.bot.22.9.6.1.nupkg.sha512"
     }
   }
 }
