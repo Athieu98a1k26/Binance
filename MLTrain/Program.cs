@@ -17,14 +17,14 @@ class Program
         const string SYMBOL = "ETHUSDT";
         var dataService = new DataService();
 
-        // =====================================================================
-        // BƯỚC 1: Tải dữ liệu 3 khung thời gian
-        // =====================================================================
+        //=====================================================================
+        //BƯỚC 1: Tải dữ liệu 3 khung thời gian
+        //=====================================================================
         //Console.WriteLine("📥 Đang tải dữ liệu 3 timeframe...");
 
-        //List<Candle> candles5m = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.FiveMinutes, totalCandles: 2000000);
-        //List<Candle> candles1h = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.OneHour, totalCandles: 1000000);
-        //List<Candle> candles1d = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.OneDay, totalCandles: 500000);
+        //List<Candle> candles5m = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.FiveMinutes, totalCandles: 2500000);
+        //List<Candle> candles1h = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.OneHour, totalCandles: 1500000);
+        //List<Candle> candles1d = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.OneDay, totalCandles: 1000000);
 
         //Console.WriteLine($"✅ 5M: {candles5m.Count} nến | 1H: {candles1h.Count} nến | 1D: {candles1d.Count} nến");
 
@@ -56,9 +56,9 @@ class Program
         //Console.WriteLine($"   Train 1H : {train1h.Count} nến");
         //Console.WriteLine($"   Train 1D : {train1d.Count} nến");
 
-        // =====================================================================
-        // BƯỚC 3: Train
-        // =====================================================================
+        ////=====================================================================
+        ////BƯỚC 3: Train
+        ////=====================================================================
         //Console.WriteLine("\n🧠 Bắt đầu huấn luyện...");
         //await Trainer.TrainWithData(train5m, train1h, train1d);
 
@@ -67,16 +67,16 @@ class Program
         //// =====================================================================
         //Console.WriteLine("\n=== BẮT ĐẦU KIỂM TRA TRÊN DỮ LIỆU MỚI ===");
         //BackTestFuture.BacktestDetailed(candles5m, candles1h, candles1d, startIndex: trainSize);
-        
+
         // ── Bước 3: Chạy live ──
-        Console.WriteLine("\n🚀 Bắt đầu live trading...");
-        Console.WriteLine("📥 Đang tải dữ liệu 3 timeframe...");
+        //Console.WriteLine("\n🚀 Bắt đầu live trading...");
+        //Console.WriteLine("📥 Đang tải dữ liệu 3 timeframe...");
 
         var candles5m = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.FiveMinutes, totalCandles: 200000);
         var candles1h = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.OneHour, totalCandles: 100000);
         var candles1d = await dataService.GetCandlesAsync(SYMBOL, KlineInterval.OneDay, totalCandles: 50000);
 
-        
+
         await Trader.RunLive(SYMBOL, candles5m, candles1h, candles1d);
 
         Console.ReadLine();
